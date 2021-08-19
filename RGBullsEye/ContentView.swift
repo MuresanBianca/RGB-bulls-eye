@@ -32,16 +32,25 @@ struct ContentView: View {
             }
             HStack {
                 Text("Match this color")
+                    .font(.headline)
                     .multilineTextAlignment(.center)
                   .frame(minWidth: 10, maxWidth: .infinity, minHeight: 10, maxHeight: 30)
                 Text("R:\(Int(rGuess * 255.0)) G:\(Int(gGuess * 255.0)) B:\(Int(bGuess * 255.0))")
+                    .font(.headline)
                     .multilineTextAlignment(.center)
                     .frame(minWidth: 10, maxWidth: .infinity, minHeight: 10, maxHeight: 30)
             }
             Button(action: {
                 self.showAlert = true
             }) {
-              Text("Hit Me!")
+                ZStack {
+                    RoundedRectangle(cornerRadius: 20)
+                        .frame(width: 150, height: 50, alignment: .center)
+                  Text("Hit Me!")
+                    .font(.title3)
+                    .fontWeight(.bold)
+                    .foregroundColor(Color.white)
+                }
             }
             .alert(isPresented: $showAlert) {
                 Alert(title: Text("Your Score"), message: Text("\(computeScore())"))
@@ -60,7 +69,7 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
                 .previewDevice("iPhone 12 Pro Max")
-                .previewLayout(.fixed(width: 568, height: 320))
+                
             ContentView(rGuess: 0.5, gGuess: 0.5, bGuess: 0.5)
                 .previewDevice("iPod touch (7th generation)")
         }
